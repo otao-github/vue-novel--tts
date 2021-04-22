@@ -1,32 +1,67 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" class="container">
+    <ot-navbar class="mt-3 mb-5" />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
+<script>
+import otNavbar from "@/components/Navbar";
 
+export default {
+  components: {
+    otNavbar,
+  },
+};
+</script>
 <style>
+:root {
+  --font-size: 16px;
+}
+
+a {
+  color: var(--dark);
+}
+.bg-dark a {
+  color: var(--light);
+}
+a:hover {
+  text-decoration: none;
+}
+
+.sticky-bottom {
+  bottom: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  line-height: 2;
+}
+
+#app {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+body.bg-dark #app {
+  color: var(--light);
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+body.custom-bg-color:not(.bg-dark) {
+  background-color: var(--bg-color);
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+body.bg-dark .btn:not(.btn-primary) {
+  color: var(--light);
+  background-color: var(--dark);
+  border-color: var(--dark);
+}
+
+body.bg-dark .card {
+  background-color: var(--dark);
+  /* border-color: var(--light); */
+  border-color: white;
 }
 </style>
